@@ -66,7 +66,7 @@ spec:
     - name: mobster_tasks_git_revision
       type: string
       description: The git revision to be used when consuming Mobster tasks for SBOM processing
-      default: 5949af09327ab7b133ffd23eca7b74585d4113d9
+      default: dacc013f67ca9a2b2d619bf83812637dc63b115b
     - name: conformaPubKey
       type: string
       description: Path to the key used by Conforma to verify attestations signed by it
