@@ -73,6 +73,10 @@ spec:
     securityContext:
       runAsUser: 1001
     env:
+      # Writable HOME so Tekton creds-init can copy SA dockerconfig secrets to
+      # $HOME/.docker/config.json (select-oci-auth in plumbing-utils).
+      - name: HOME
+        value: /var/workdir
       - name: SNAPSHOT_PATH
         value: $(params.SNAPSHOT_PATH)
       - name: IMAGES_TXT
@@ -117,7 +121,7 @@ spec:
         - name: sourceDataArtifact
           value: $(params.sourceDataArtifact)
     - name: extract
-      image: quay.io/redhat-user-workloads/calunga-tenant/plumbing-utils@sha256:4d8a0c051956f5ea4afcb7bdb0382372c34e0f1fece761e2e2bb2b4c45a516a2
+      image: quay.io/redhat-user-workloads/calunga-tenant/plumbing-utils@sha256:6c037044d1d15c614b0eaf64e2cfd1c65d8bf7da9080bd23c3a2a5a5cabe13d9
       computeResources:
         limits:
           memory: 256Mi
